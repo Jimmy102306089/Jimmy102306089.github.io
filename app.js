@@ -1,12 +1,12 @@
 $(function()  {
 
     var currentText = '';
-	var pretemp=0;
-	var temp=0;
-	var result ;
-	var operator;
+    var temp=0;
+    var result ;
+    var operator;
 	
-	function render()    {
+    function render()    {
+    
      $('#message').text(currentText);
 };
 
