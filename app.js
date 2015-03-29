@@ -1,13 +1,15 @@
 $(function()  {
 
     var currentText = '';
-	var pretemp=0,temp=0,result ,x;
-	function render()
-
-{
+	var pretemp=0;
+	var temp=0;
+	var result ;
+	var operator;
+	
+	function render()    {
      $('#message').text(currentText);
-//按下去變數字 同理 用在計算機裡
-}
+};
+
 $('#btn1').on('click',function() {
   currentText = currentText + '1';
   		render();
@@ -58,196 +60,113 @@ $('#btn0').on('click',function() {
   		render();
 });
 
-$('#btnd').on('click',function() {
+$('#btndot').on('click',function() {
   currentText = currentText + '.';
   		render();
 });
 
-$('#btnPlus').on('click',function()
-	{
-		x=1;
-		if (pretemp==0) 
-		{
-		pretemp =  parseFloat(currentText);
-	    currentText = '';
-		render();
-		}
-		else
-		{
-		temp = pretemp +  parseFloat(currentText);
-		currentText = '';
-		pretemp=0;
-		render();
-		}		
-	});
-$('#btnminus').on('click',function()
-	{
-		x=2;
-		if (pretemp==0) 
-		{
-		pretemp =  parseFloat(currentText);
-		currentText = '';
-		render();
-		}
-		else
-		{
-		temp = pretemp -  parseFloat(currentText);
-		currentText = '';
-		pretemp=0;
-		render();
-		}		
-	});
-	$('#btncross').on('click',function()
-	{
-		x=3;
-		if (pretemp==0) 
-		{
-		pretemp =  parseFloat(currentText);
-	    currentText = '';
-		render();
-		}
-		else
-		{
-		temp = pretemp *  parseFloat(currentText);
-	    currentText = '';
-		pretemp=0;
-		render();
-		}		
-	});
-	$('#btndivide').on('click',function()
-	{
-		x=4;
-		if (pretemp==0) 
-		{
-		pretemp =  parseFloat(currentText);
-	    currentText = '';
-		render();
-		}
-		else
-		{
-		temp = pretemp /  parseFloat(currentText);
-		currentText = '';
-		pretemp=0;
-		render();
-		}		
-	});
-	$('#btnequal').on('click',function()
-	{
-		
-		switch(x)
-		{
-			case 1:
-			if (temp==0) 
-			{
-				result = pretemp + parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			else
-			{
-				result = temp + parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			case 2:
-			if (temp==0) 
-			{
-				result = pretemp - parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			else
-			{
-				result = temp - parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			case 3:
-			if (temp==0) 
-			{
-				result = pretemp * parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			else
-			{
-				result = temp * parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			case 4:
-			if (temp==0) 
-			{
-				result = pretemp / parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			else
-			{
-				result = temp / parseFloat(currentText);
-				currentText = '';
-				$('#message').text(result);
-				temp = 0;
-				x=0;
-				pretemp=0;
-				result=0;
-				break;
-			}
-			case 0:
-			$('#message').text('請輸入數字~')		
-		}
-		
-		
-	});
-	$('#btnClear').on('click',function()
-	{
-		if (currentText!='') 
-		{
-			currentText = '';
-			temp = 0;
-			x='';
-			$('#message').text('0');
-		}
-		else if(currentText=='')
-		{
-			$('#message').text('0');
-		}
+
+$('#btnClear').on('click',function()
+	{ currentText = '請點選數字' 
+	  render()	
 		});
+
+
+$('#btnAdd').on('click',function()
+	{
+		operator = '+';
+		temp =  currentText;
+		currentText = temp +' + ';
+		render();
+		currentText = ''
+	});
+
+    $('#btnMinus').on('click',function()
+	{
+		operator = '-' ;
+		temp = currentText;
+     	currentText = temp + ' - ';		
+     	render();
+     	currentText = ''
+		
+		
+	});
+	$('#btnMultiply').on('click',function()
+	{
+		operator = '*' ;
+
+		temp =  currentText ;
+	    currentText = temp + ' * ';	
+		render();
+	    currentText = ''
+		
+			});
+	
+	$('#btnDivide').on('click',function()
+	{
+		operator = '/' ;
+		
+		
+		temp =  currentText;
+	    currentText = temp + ' / ';	
+		render();
+		currentText = ''		
+	});
+
+	$('#btnEqual').on('click',function()
+	{
+		
+		switch(operator)
+		{
+			case '+':
+			
+				result = parseFloat(temp) + parseFloat(currentText);
+				currentText = '';
+				$('#message').text(result);
+				temp = 0;
+				operator=0;
+				temp=0;
+				result=0;
+				break;
+			
+			case '-':
+			
+				result = parseFloat(temp) - parseFloat(currentText);
+				currentText = '';
+				$('#message').text(result);
+				operator=0;
+				temp=0;
+				result=0;
+				break;
+			
+			case '*':
+			
+				result = parseFloat(temp) * parseFloat(currentText);
+				currentText = '';
+				$('#message').text(result);
+				
+				operator =0;
+				temp=0;
+				result=0;
+				break;
+			
+			case '/':
+			
+				result = parseFloat(temp) / parseFloat(currentText);
+				currentText = '';
+				$('#message').text(result);
+				
+			    operator=0;
+				temp=0;
+				result=0;
+				break;
+			
+			case 0:
+			$('#message').text('')		
+		}
+		
+		
+	});
 
 
 });
