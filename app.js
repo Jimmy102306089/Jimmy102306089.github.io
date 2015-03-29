@@ -67,7 +67,7 @@ $('#btndot').on('click',function() {
 
 
 $('#btnClear').on('click',function()
-	{ currentText = '請點選數字' 
+	{ currentText = ' ' 
 	  render()	
 		});
 
